@@ -18,6 +18,9 @@ import multipleSortFieldsSource from "!!raw-loader!../_snippets/search/_multiple
 import includeFieldsSource from "!!raw-loader!../_snippets/search/_includeFields";
 import excludeFieldsSource from "!!raw-loader!../_snippets/search/_excludeFields";
 import searchUsingCollationSource from "!!raw-loader!../_snippets/search/_searchUsingCollation";
+import SearchPagination, {
+  toc as searchPaginationToc,
+} from "../_search-paginate.mdx";
 
 <SearchTemplate
   codeLang="typescript"
@@ -36,6 +39,10 @@ import searchUsingCollationSource from "!!raw-loader!../_snippets/search/_search
   searchUsingCollation={searchUsingCollationSource}
 />
 
-[//]: # "workaround to generate table of contents, see https://github.com/facebook/docusaurus/issues/3915"
+<SearchPagination />
 
-export const toc = [...searchToc];
+[//]:
+  #
+  "workaround to generate table of contents, see https://github.com/facebook/docusaurus/issues/3915"
+
+export const toc = [...searchToc, ...searchPaginationToc];
