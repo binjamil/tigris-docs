@@ -17,6 +17,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/overview/features/",
+      "destination": "/docs/concepts/",
+      "permanent": true
+    },
+    {
       "source": "/docs/documents/documents/",
       "destination": "/docs/concepts/database/documents/",
       "permanent": true
