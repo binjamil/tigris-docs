@@ -10,13 +10,25 @@ Describes database
 
 Returns schema and metadata for all the collections in the database
 
-```shell
-tigris describe database --project={tigris_project} [flags]
+```
+tigris describe database [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help          help for database
-  -s, --schema-only   dump only schema of all database collections
+  -f, --format string   output schema in the requested format: go, typescript, java
+  -h, --help            help for database
+  -s, --schema-only     dump only schema of all database collections
 ```
+
+### Options inherited from parent commands
+
+```
+      --branch string    Specifies branch: --branch=my_br1
+  -p, --project string   Specifies project: --project=my_proj1
+```
+
+### SEE ALSO
+
+- [tigris describe](tigris_describe.md) - Describes database or collection

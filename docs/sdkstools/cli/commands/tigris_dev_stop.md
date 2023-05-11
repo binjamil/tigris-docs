@@ -1,12 +1,12 @@
 ---
 id: dev-stop
-title: Local dev stop
+title: Dev Stop
 slug: /sdkstools/cli/dev-stop
 ---
 
 Stops local Tigris instance
 
-```shell
+```
 tigris dev stop [flags]
 ```
 
@@ -15,3 +15,7 @@ tigris dev stop [flags]
 ```
   -h, --help   help for stop
 ```
+
+### SEE ALSO
+
+- [tigris dev](tigris_dev.md) - Starts and stops local development Tigris server

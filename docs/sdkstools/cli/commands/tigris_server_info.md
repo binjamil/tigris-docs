@@ -1,6 +1,6 @@
 ---
 id: server-info
-title: Server info
+title: Server Info
 slug: /sdkstools/cli/server-info
 ---
 
@@ -15,3 +15,7 @@ tigris server info [flags]
 ```
   -h, --help   help for info
 ```
+
+### SEE ALSO
+
+- [tigris server](tigris_server.md) - Tigris server related commands

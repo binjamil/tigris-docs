@@ -1,6 +1,6 @@
 ---
 id: completion
-title: Auto-completion for Shell
+title: Completion
 slug: /sdkstools/cli/completion
 ---
 
@@ -10,13 +10,13 @@ Generates completion script for shell
 
 Generates completion helper script for multiple shells
 
-```shell
+```
 tigris completion [bash|zsh|fish|powershell]
 ```
 
 ### Examples
 
-```shell
+```
 
   # Bash
 
@@ -62,3 +62,7 @@ tigris completion [bash|zsh|fish|powershell]
 ```
   -h, --help   help for completion
 ```
+
+### SEE ALSO
+
+- [tigris](tigris.md) - tigris is a command line interface of Tigris data platform

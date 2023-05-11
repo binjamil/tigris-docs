@@ -1,12 +1,12 @@
 ---
 id: config-show
-title: Show config
+title: Config Show
 slug: /sdkstools/cli/config-show
 ---
 
 Returns effective CLI configuration
 
-```shell
+```
 tigris config show [flags]
 ```
 
@@ -15,3 +15,7 @@ tigris config show [flags]
 ```
   -h, --help   help for show
 ```
+
+### SEE ALSO
+
+- [tigris config](tigris_config.md) - Configuration commands

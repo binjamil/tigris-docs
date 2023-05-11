@@ -11,16 +11,16 @@ Executes a set of operations in a transaction
 Executes a set of operations in a transaction.
 All the read, write and schema operations are supported.
 
-```shell
-tigris transact --project={tigris_project} {operation}...|- [flags]
+```
+tigris transact {operation}...|- [flags]
 ```
 
 ### Examples
 
-```shell
+```
 
   # Perform a transaction that inserts and updates in three collections
-  tigris tigris transact --project=test_project \
+  tigris tigris transact myproj \
   '[
     {
       "insert": {
@@ -47,5 +47,11 @@ tigris transact --project={tigris_project} {operation}...|- [flags]
 ### Options
 
 ```
-  -h, --help   help for transact
+      --branch string    Specifies branch: --branch=my_br1
+  -h, --help             help for transact
+  -p, --project string   Specifies project: --project=my_proj1
 ```
+
+### SEE ALSO
+
+- [tigris](tigris.md) - tigris is a command line interface of Tigris data platform

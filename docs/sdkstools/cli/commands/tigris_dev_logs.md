@@ -1,12 +1,12 @@
 ---
 id: dev-logs
-title: Local dev logs
+title: Dev Logs
 slug: /sdkstools/cli/dev-logs
 ---
 
 Shows logs from local Tigris instance
 
-```shell
+```
 tigris dev logs [flags]
 ```
 
@@ -16,3 +16,7 @@ tigris dev logs [flags]
   -f, --follow   follow logs output
   -h, --help     help for logs
 ```
+
+### SEE ALSO
+
+- [tigris dev](tigris_dev.md) - Starts and stops local development Tigris server

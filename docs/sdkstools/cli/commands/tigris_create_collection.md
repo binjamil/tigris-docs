@@ -10,16 +10,16 @@ Creates collection(s)
 
 Creates collections with provided schema.
 
-```shell
-tigris create collection --project={tigris-project} {schema}...|- [flags]
+```
+tigris create collection {schema}...|- [flags]
 ```
 
 ### Examples
 
-```shell
+```
 
   # Pass the schema as a string
-  tigris create collection --project=test_project '{
+  tigris create collection --project=myproj '{
 	"title": "users",
 	"description": "Collection of documents with details of users",
 	"properties": {
@@ -58,16 +58,22 @@ tigris create collection --project={tigris-project} {schema}...|- [flags]
   #    "id"
   #  ]
   # }
-  tigris create collection testdb </home/alice/users.json
+  tigris create collection --project=myproj </home/alice/users.json
 
   # Create collection with schema passed through stdin
-  cat /home/alice/users.json | tigris create collection testdb -
-  tigris describe collection sampledb users | jq .schema | tigris create collection testdb -
+  cat /home/alice/users.json | tigris create collection myproj -
+  tigris describe collection --project=myproj users | jq .schema | tigris create collection myproj -
 
 ```
 
 ### Options
 
 ```
-  -h, --help   help for collection
+      --branch string    Specifies branch: --branch=my_br1
+  -h, --help             help for collection
+  -p, --project string   Specifies project: --project=my_proj1
 ```
+
+### SEE ALSO
+
+- [tigris create](tigris_create.md) - Creates project, collection, namespace or app_key

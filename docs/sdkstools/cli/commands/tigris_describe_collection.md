@@ -10,12 +10,19 @@ Describes collection
 
 Returns collection schema including metadata
 
-```shell
-tigris describe collection --project={tigris_project} {collection} [flags]
+```
+tigris describe collection {collection} [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for collection
+      --branch string    Specifies branch: --branch=my_br1
+  -f, --format string    output schema in the requested format: go, typescript, java
+  -h, --help             help for collection
+  -p, --project string   Specifies project: --project=my_proj1
 ```
+
+### SEE ALSO
+
+- [tigris describe](tigris_describe.md) - Describes database or collection

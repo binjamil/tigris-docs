@@ -10,28 +10,28 @@ Inserts or replaces document(s)
 
 Inserts new documents or replaces existing documents.
 
-```shell
-tigris insert_or_replace --project={tigris_project} {collection} {document}...|- [flags]
+```
+tigris replace {collection} {document}...|- [flags]
 ```
 
 ### Examples
 
-```shell
+```
 
   # Insert new documents
-  tigris insert_or_replace --project=test_project users '{"id": 1, "name":  "John Wong"}'
+  tigris replace --project=myproj users '{"id": 1, "name": "John Wong"}'
 
   # Replace existing document
   # Existing document with the following data will get replaced
   #  {"id": 20, "name": "Jania McGrory"}
-  tigris insert_or_replace --project=test_project users '{"id": 20, "name": "Alice Alan"}'
+  tigris replace --project=myproj users '{"id": 20, "name": "Alice Alan"}'
 
   # Insert or replace multiple documents
   # Existing document with the following data will get replaced
   #  {"id": 20, "name": "Alice Alan"}
   #  {"id": 21, "name": "Bunny Instone"}
   # While the new document {"id": 19, "name": "New User"} will get inserted
-  tigris insert_or_replace --project=test_project users \
+  tigris replace --project=myproj users \
   '[
     {"id": 19, "name": "New User"},
     {"id": 20, "name": "Replaced Alice Alan"},
@@ -43,6 +43,12 @@ tigris insert_or_replace --project={tigris_project} {collection} {document}...|-
 ### Options
 
 ```
-  -b, --batch_size int32   set batch size (default 100)
+  -b, --batch-size int32   set batch size (default 100)
+      --branch string      Specifies branch: --branch=my_br1
   -h, --help               help for replace
+  -p, --project string     Specifies project: --project=my_proj1
 ```
+
+### SEE ALSO
+
+- [tigris](tigris.md) - tigris is a command line interface of Tigris data platform

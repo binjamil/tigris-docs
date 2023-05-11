@@ -10,16 +10,16 @@ Updates collection schema
 
 Updates collection schema.
 
-```shell
-tigris alter collection --project={tigris-project} {schema} [flags]
+```
+tigris alter collection {schema} [flags]
 ```
 
 ### Examples
 
-```shell
+```
 
   # Pass the schema as a string
-  tigris alter collection --project=test_project '{
+  tigris alter collection --project=myproj '{
 	"title": "users",
 	"description": "Collection of documents with details of users",
 	"properties": {
@@ -43,5 +43,11 @@ tigris alter collection --project={tigris-project} {schema} [flags]
 ### Options
 
 ```
-  -h, --help   help for collection
+      --branch string    Specifies branch: --branch=my_br1
+  -h, --help             help for collection
+  -p, --project string   Specifies project: --project=my_proj1
 ```
+
+### SEE ALSO
+
+- [tigris alter](tigris_alter.md) - Alters collection
