@@ -8055,12 +8055,9 @@
                 "google.api.http": {
                   "rules": [
                     {
-                      "method": "GET",
-                      "pattern": "/v1/billing/invoices"
-                    },
-                    {
-                      "method": "GET",
-                      "pattern": "/v1/billing/invoices/{invoice_id}"
+                      "method": "POST",
+                      "pattern": "/v1/billing/invoices",
+                      "body": "*"
                     }
                   ]
                 }
