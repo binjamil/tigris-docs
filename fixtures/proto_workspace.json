@@ -128,6 +128,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "role",
+              "description": "Role associated with the key",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -777,6 +789,18 @@
             {
               "name": "project",
               "description": "Project name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "role",
+              "description": "role name",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1835,6 +1859,18 @@
               "type": "CollectionIndex",
               "longType": "CollectionIndex",
               "fullType": "tigrisdata.v1.CollectionIndex",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "search_status",
+              "description": "search index status",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -6096,7 +6132,7 @@
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
-          "hasOneofs": false,
+          "hasOneofs": true,
           "extensions": [],
           "fields": [
             {
@@ -6121,6 +6157,18 @@
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "dry",
+              "description": "dry",
+              "label": "optional",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_dry",
               "defaultValue": ""
             }
           ]
@@ -7345,6 +7393,697 @@
                     {
                       "method": "GET",
                       "pattern": "/v1/observability/info"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "server/v1/billing.proto",
+      "description": "",
+      "package": "tigrisdata.billing.v1",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "AggregationWindow",
+          "longName": "AggregationWindow",
+          "fullName": "tigrisdata.billing.v1.AggregationWindow",
+          "description": "",
+          "values": [
+            {
+              "name": "HOUR",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DAY",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "Charge",
+          "longName": "Charge",
+          "fullName": "tigrisdata.billing.v1.Charge",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "Charge name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "quantity",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "subtotal",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tiers",
+              "description": "Tiered charges, if any",
+              "label": "repeated",
+              "type": "ChargeTier",
+              "longType": "ChargeTier",
+              "fullType": "tigrisdata.billing.v1.ChargeTier",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ChargeTier",
+          "longName": "ChargeTier",
+          "fullName": "tigrisdata.billing.v1.ChargeTier",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "starting_at",
+              "description": "Starting point where this Tier is applicable.\nEx - A charge could be tiered as \"Tier 1 (0-5)\", \"Tier 2 (5-10)\"; starting_at will be 0, 5 etc.",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "quantity",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "price",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "subtotal",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUsageRequest",
+          "longName": "GetUsageRequest",
+          "fullName": "tigrisdata.billing.v1.GetUsageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "start_time",
+              "description": "RFC 3339 starting time to get usage from",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "end_time",
+              "description": "RFC 3339 ending time to get usage until",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metrics",
+              "description": "Optionally filter usage data by specific metrics. By default, all metrics are included in usage data",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "aggregate_by",
+              "description": "Optionally aggregate data over a time window. By default, data will be aggregated \"hourly\"",
+              "label": "optional",
+              "type": "AggregationWindow",
+              "longType": "AggregationWindow",
+              "fullType": "tigrisdata.billing.v1.AggregationWindow",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_aggregate_by",
+              "defaultValue": ""
+            },
+            {
+              "name": "next_page",
+              "description": "Optional pagination token for fetching a particular result page, first page will be fetched if `null`",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_next_page",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUsageResponse",
+          "longName": "GetUsageResponse",
+          "fullName": "tigrisdata.billing.v1.GetUsageResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data",
+              "description": "Series of usage data grouped by usage metric.",
+              "label": "repeated",
+              "type": "DataEntry",
+              "longType": "GetUsageResponse.DataEntry",
+              "fullType": "tigrisdata.billing.v1.GetUsageResponse.DataEntry",
+              "ismap": true,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "next_page",
+              "description": "token for next page if it exists, else `null`",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_next_page",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataEntry",
+          "longName": "GetUsageResponse.DataEntry",
+          "fullName": "tigrisdata.billing.v1.GetUsageResponse.DataEntry",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "UsageTimeSeries",
+              "longType": "UsageTimeSeries",
+              "fullType": "tigrisdata.billing.v1.UsageTimeSeries",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Invoice",
+          "longName": "Invoice",
+          "fullName": "tigrisdata.billing.v1.Invoice",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "unique identifier for this invoice",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "entries",
+              "description": "entries that make up the invoice",
+              "label": "repeated",
+              "type": "InvoiceLineItem",
+              "longType": "InvoiceLineItem",
+              "fullType": "tigrisdata.billing.v1.InvoiceLineItem",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "start_time",
+              "description": "RFC 3339 starting time for usage period during which items were added to this invoice",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "end_time",
+              "description": "RFC 3339 ending time for usage period during which items were added to this invoice",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "subtotal",
+              "description": "invoice subtotal",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total",
+              "description": "total invoice amount",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plan_name",
+              "description": "Tigris price plan name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "InvoiceLineItem",
+          "longName": "InvoiceLineItem",
+          "fullName": "tigrisdata.billing.v1.InvoiceLineItem",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "Product name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "quantity",
+              "description": "Quantity",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total",
+              "description": "Total amount for the product",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "charges",
+              "description": "Broken down charges",
+              "label": "repeated",
+              "type": "Charge",
+              "longType": "Charge",
+              "fullType": "tigrisdata.billing.v1.Charge",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListInvoicesRequest",
+          "longName": "ListInvoicesRequest",
+          "fullName": "tigrisdata.billing.v1.ListInvoicesRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "starting_on",
+              "description": "RFC 3339 timestamp (inclusive). Invoices will only be returned for billing periods that start at or after this time.",
+              "label": "optional",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_starting_on",
+              "defaultValue": ""
+            },
+            {
+              "name": "ending_before",
+              "description": "RFC 3339 timestamp (exclusive). Invoices will only be returned for billing periods that end before this time.",
+              "label": "optional",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_ending_before",
+              "defaultValue": ""
+            },
+            {
+              "name": "invoice_id",
+              "description": "optionally filter by a specific invoice_id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "page_size",
+              "description": "maximum number of items to include in result set",
+              "label": "optional",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_page_size",
+              "defaultValue": ""
+            },
+            {
+              "name": "next_page",
+              "description": "pagination token for fetching a particular result page, first page will be fetched if `null`",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_next_page",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListInvoicesResponse",
+          "longName": "ListInvoicesResponse",
+          "fullName": "tigrisdata.billing.v1.ListInvoicesResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data",
+              "description": "Array of invoices",
+              "label": "repeated",
+              "type": "Invoice",
+              "longType": "Invoice",
+              "fullType": "tigrisdata.billing.v1.Invoice",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "next_page",
+              "description": "token for next page if it exists, else `null`",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_next_page",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Usage",
+          "longName": "Usage",
+          "fullName": "tigrisdata.billing.v1.Usage",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "start_time",
+              "description": "RFC 3339 starting time for this usage period",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "end_time",
+              "description": "RFC 3339 ending time for this usage period",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "Usage metric value",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UsageTimeSeries",
+          "longName": "UsageTimeSeries",
+          "fullName": "tigrisdata.billing.v1.UsageTimeSeries",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "series",
+              "description": "Array of usage metric",
+              "label": "repeated",
+              "type": "Usage",
+              "longType": "Usage",
+              "fullType": "tigrisdata.billing.v1.Usage",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Billing",
+          "longName": "Billing",
+          "fullName": "tigrisdata.billing.v1.Billing",
+          "description": "",
+          "methods": [
+            {
+              "name": "ListInvoices",
+              "description": "ListInvoices fetches past invoices for this user",
+              "requestType": "ListInvoicesRequest",
+              "requestLongType": "ListInvoicesRequest",
+              "requestFullType": "tigrisdata.billing.v1.ListInvoicesRequest",
+              "requestStreaming": false,
+              "responseType": "ListInvoicesResponse",
+              "responseLongType": "ListInvoicesResponse",
+              "responseFullType": "tigrisdata.billing.v1.ListInvoicesResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/v1/billing/invoices"
+                    },
+                    {
+                      "method": "GET",
+                      "pattern": "/v1/billing/invoices/{invoice_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetUsage",
+              "description": "GetUsage gets the aggregate usage for this user in given time period",
+              "requestType": "GetUsageRequest",
+              "requestLongType": "GetUsageRequest",
+              "requestFullType": "tigrisdata.billing.v1.GetUsageRequest",
+              "requestStreaming": false,
+              "responseType": "GetUsageResponse",
+              "responseLongType": "GetUsageResponse",
+              "responseFullType": "tigrisdata.billing.v1.GetUsageResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/billing/usage",
+                      "body": "*"
                     }
                   ]
                 }
