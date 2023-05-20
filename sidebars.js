@@ -302,7 +302,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Search",
+              label: "Full-text Search",
               link: {
                 type: "doc",
                 id: "sdkstools/typescript/search/index",
@@ -313,11 +313,24 @@ const sidebars = {
                 "sdkstools/typescript/search/types",
                 "sdkstools/typescript/search/index-documents",
                 "sdkstools/typescript/search/fulltext-search",
-                "sdkstools/typescript/search/vector-search",
                 "sdkstools/typescript/search/get",
                 "sdkstools/typescript/search/delete",
                 "sdkstools/typescript/search/pagination",
                 "sdkstools/typescript/search/using-interfaces",
+              ],
+            },
+            {
+              type: "category",
+              label: "Vector Search",
+              link: {
+                type: "doc",
+                id: "sdkstools/typescript/vector/getting-started",
+              },
+              collapsed: false,
+              items: [
+                "sdkstools/typescript/vector/getting-started",
+                "sdkstools/typescript/vector/hybrid-search",
+                "sdkstools/typescript/vector/usage-guide",
               ],
             },
           ],
