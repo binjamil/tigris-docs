@@ -3,20 +3,23 @@ import TabItem from "@theme/TabItem";
 
 # Automatic Schema Management
 
-Made changes to your data models and forgot to apply them in production before deployment? Have
-to communicate schema changes to others or wait for that project tracker issue to resolve? Unexpected
-changes happen all the time, often by mistake and without warning. Even with change control policies
-carved in stone, they may not always be followed.
+Made changes to your data models and forgot to apply them in production before
+deployment? Have to communicate schema changes to others or wait for that
+project tracker issue to resolve? Unexpected changes happen all the time, often
+by mistake and without warning. Even with change control policies carved in
+stone, they may not always be followed.
 
-Tigris lets you automate the schema management process completely and ensures that the data models
-in your application are always in sync with the corresponding schema in the database. This makes the
-change control as simple as a "Code review". Let's see how this works.
+Tigris lets you automate the schema management process completely and ensures
+that the data models in your application are always in sync with the
+corresponding schema in the database. This makes the change control as simple as
+a "Code review". Let's see how this works.
 
 ## How does this work?
 
-Define your data models in your TypeScript project. Register them with the Tigris client during build
-time and let the Tigris SDK automatically synchronize your data models with the database. This includes
-creating collections that do not exist, as well as applying schema changes if the data model has evolved.
+Define your data models in your TypeScript project. Register them with the
+Tigris client during build time and let the Tigris SDK automatically synchronize
+your data models with the database. This includes creating collections that do
+not exist, as well as applying schema changes if the data model has evolved.
 
 For example, let's use following `Product` and `User` data model:
 
@@ -72,7 +75,8 @@ export class User {
 
 ### Use this script to register models {#build-script}
 
-Now, let's write a script that can trigger build time to automatically create or update the collections
+Now, let's write a script that can trigger build time to automatically create or
+update the collections
 
 ```ts title=setup.ts
 import { Tigris } from "@tigrisdata/core";
@@ -101,18 +105,19 @@ main()
 
 The script depends on the following environment variables to be set
 
-| Environment variable name | Value                                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------------------------ |
-| TIGRIS_URI                | The URI to your Tigris deployment. For Tigris Cloud this is https://api.preview.tigrisdata.cloud |
-| TIGRIS_PROJECT            | your project name                                                                                |
-| TIGRIS_CLIENT_ID          | your production app key client ID                                                                |
-| TIGRIS_CLIENT_SECRET      | your production app key client secret                                                            |
-| TIGRIS_DB_BRANCH          | main                                                                                             |
+| Environment variable name | Value                                                                                                                     |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| TIGRIS_URI                | The URI to your Tigris deployment. For Tigris Cloud this is one of the [Tigris regions](/docs/concepts/projects/#regions) |
+| TIGRIS_PROJECT            | your project name                                                                                                         |
+| TIGRIS_CLIENT_ID          | your production app key client ID                                                                                         |
+| TIGRIS_CLIENT_SECRET      | your production app key client secret                                                                                     |
+| TIGRIS_DB_BRANCH          | main                                                                                                                      |
 
 ### Execute setup script at build time
 
-Include this script in `package.json` of your **npm** project and register triggers depending how your
-project builds. Here are some examples for popular frameworks:
+Include this script in `package.json` of your **npm** project and register
+triggers depending how your project builds. Here are some examples for popular
+frameworks:
 
 <Tabs>
 <TabItem value="nextjs" label="Next.js">
@@ -200,22 +205,24 @@ project builds. Here are some examples for popular frameworks:
 </TabItem>
 </Tabs>
 
-This way your data models are always synchronized with the database and you never have to step out of
-your development workflow.
+This way your data models are always synchronized with the database and you
+never have to step out of your development workflow.
 
 ## FAQs
 
 <details>
   <summary>Q - Will a new collection be created if it already exists?</summary>
 
-- No, a new collection will not be created. However, Tigris will attempt to modify the existing
-  schema if there are changes. [Learn more about schema modification in Tigris](schema.mdx#modifying-the-schema)
+- No, a new collection will not be created. However, Tigris will attempt to
+  modify the existing schema if there are changes.
+  [Learn more about schema modification in Tigris](schema.mdx#modifying-the-schema)
 
 </details>
 
 <details>
   <summary>Q - Will a collection be deleted if corresponding model is removed?</summary>
 
-- No, that would be an unsafe operation. Users have to explicitly delete collection(s).
+- No, that would be an unsafe operation. Users have to explicitly delete
+  collection(s).
 
 </details>

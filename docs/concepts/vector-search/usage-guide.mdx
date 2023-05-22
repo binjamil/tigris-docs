@@ -1,5 +1,9 @@
 import tigrisConfig from "@site/tigris.config.js";
 
+export const SignUp = () => {
+  return <a href={tigrisConfig.signupUrl}>sign up for a free Tigris account</a>;
+};
+
 # Usage Guide
 
 ## Installing the client
@@ -12,11 +16,12 @@ npm install @tigrisdata/vector
 
 ## Fetching Tigris API credentials
 
-You can sign up for a free Tigris account <a href={tigrisConfig.signupUrl}>here</a>.
+You can <SignUp />.
 
-Once you have signed up for the Tigris account, create a new project to get started.
-Next, make a note of the `clientId` and `clientSecret`, which you can get from the
-**Application Keys** section of the project.
+Once you have signed up for the Tigris account, create a new project to get
+started. Next, make a note of the Tigris region `uri`, `clientId` and
+`clientSecret`, which you can get from the **Application Keys** section of the
+project.
 
 ## Initializing the client
 
@@ -25,7 +30,7 @@ import { VectorDocumentStore } from "@tigrisdata/vector";
 
 const vectorDocStore = new VectorDocumentStore({
   connection: {
-    serverUrl: "api.preview.tigrisdata.cloud",
+    serverUrl: "region_uri",
     projectName: "vectordemo",
     clientId: "clientId_here",
     clientSecret: "clientSecret_here",
@@ -110,8 +115,8 @@ const results = await vectorDocStore.similaritySearchVector({
 ```
 
 The `query` field is an array of numbers, which represents the vector
-representation of the query. The `k` field is the number of closest
-matches to retrieve in order.
+representation of the query. The `k` field is the number of closest matches to
+retrieve in order.
 
 ## Using attribute filtering
 
@@ -130,13 +135,20 @@ const results = await vectorDocStore.similaritySearchVectorWithScore({
 
 Filtering supports the following operators:
 
-- `$eq` - Matches documents where the field value is equal to the provided value.
-- `$lt` - Matches documents where the field value is less than the provided value.
-- `$lte` - Matches documents where the field value is less than or equal to the provided value.
-- `$gt` - Matches documents where the field value is greater than the provided value.
-- `$gte` - Matches documents where the field value is greater than or equal to the provided value.
-- `$not` - Matches documents where the field value is not equal to the provided value.
-- `$contains` - Matches documents where the the provided value is a substring of the field value.
+- `$eq` - Matches documents where the field value is equal to the provided
+  value.
+- `$lt` - Matches documents where the field value is less than the provided
+  value.
+- `$lte` - Matches documents where the field value is less than or equal to the
+  provided value.
+- `$gt` - Matches documents where the field value is greater than the provided
+  value.
+- `$gte` - Matches documents where the field value is greater than or equal to
+  the provided value.
+- `$not` - Matches documents where the field value is not equal to the provided
+  value.
+- `$contains` - Matches documents where the the provided value is a substring of
+  the field value.
 - `$regexp` - Matches documents where the field value matches the given regex.
 
 - `$and` - Matches documents where all of the provided filters match.

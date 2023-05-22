@@ -1,14 +1,14 @@
 # Conduct a Hybrid Search
 
-Hybrid search is a combination of vector search and attribute filtering.
-By specifying expressions that filter on scalar fields you can narrow
-down the results of a vector search making them more relevant.
+Hybrid search is a combination of vector search and attribute filtering. By
+specifying expressions that filter on scalar fields you can narrow down the
+results of a vector search making them more relevant.
 
-The following example demonstrates how to perform a hybrid search.
-Suppose you want to search for product reviews based on vector embeddings,
-but you only want those for a certain product category. You can do this
-by performing a vector search as usual, but this time also specifying a
-filter expression that filters on the product category.
+The following example demonstrates how to perform a hybrid search. Suppose you
+want to search for product reviews based on vector embeddings, but you only want
+those for a certain product category. You can do this by performing a vector
+search as usual, but this time also specifying a filter expression that filters
+on the product category.
 
 ## Create the Vector Database client
 
@@ -17,7 +17,7 @@ import { VectorDocumentStore } from "@tigrisdata/vector";
 
 const vectorDocStore = new VectorDocumentStore({
   connection: {
-    serverUrl: "api.preview.tigrisdata.cloud",
+    serverUrl: "region_uri_here",
     projectName: "vectordemo",
     clientId: "clientId_here",
     clientSecret: "clientSecret_here",
@@ -65,9 +65,9 @@ await vectorDocStore.addDocumentsWithVectors({
 
 ## Perform a hybrid search query
 
-Now we can query the index for similar documents by providing the query
-vector. But we will limit the search results to documents that have a
-product category of "Electronics".
+Now we can query the index for similar documents by providing the query vector.
+But we will limit the search results to documents that have a product category
+of "Electronics".
 
 ```ts
 const results = await vectorDocStore.similaritySearchVectorWithScore({
@@ -80,14 +80,13 @@ const results = await vectorDocStore.similaritySearchVectorWithScore({
 console.log(JSON.stringify(results, null, 2));
 ```
 
-Here the `filter` option is used to specify the attribute filtering
-expression. The `filter` option is an object where the keys are the
-metadata attributes of the documents and the values are the values
-to filter on.
+Here the `filter` option is used to specify the attribute filtering expression.
+The `filter` option is an object where the keys are the metadata attributes of
+the documents and the values are the values to filter on.
 
-The `filter` option can also be used to filter on multiple attributes.
-For example, if you wanted to filter on both the product category and
-the rating, you could do the following:
+The `filter` option can also be used to filter on multiple attributes. For
+example, if you wanted to filter on both the product category and the rating,
+you could do the following:
 
 ```ts
 const results = await vectorDocStore.similaritySearchVectorWithScore({

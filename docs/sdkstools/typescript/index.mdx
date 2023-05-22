@@ -3,6 +3,10 @@ import TabItem from "@theme/TabItem";
 import tigrisConfig from "@site/tigris.config.js";
 import Installation from "@site/docs/includes/_install_cloud_login.mdx";
 
+export const ConsoleLink = () => {
+  return <a href={tigrisConfig.consoleUrl}>Tigris Cloud dashboard</a>;
+};
+
 # Tigris TypeScript SDK overview
 
 ## Prerequisites
@@ -13,7 +17,7 @@ import Installation from "@site/docs/includes/_install_cloud_login.mdx";
 
 Once you have successfully signed up, you are ready to start creating a project.
 You can create a new project from the Tigris Cloud dashboard by clicking on the
-**Create a new project** button from the <a href={tigrisConfig.consoleUrl}>Tigris Cloud dashboard</a>.
+**Create a new project** button from the <ConsoleLink />.
 
 ![Create a new project](/img/screenshots/create-new-project-dialog.jpg)
 
@@ -24,7 +28,8 @@ a command to generate application code with Tigris pre-configured.
 
 ## Automatic Setup
 
-Copy the `create-tigris-app` command that is shown in the [create a project section](#create-project) above.
+Copy the `create-tigris-app` command that is shown in the
+[create a project section](#create-project) above.
 
 We recommend creating a new app using `create-tigris-app`, which sets up the
 Tigris SDK automatically for you. (You don't need to create an empty directory.
@@ -45,8 +50,8 @@ Install the Tigris SDK that is provided as a npm package
 npm install @tigrisdata/core
 ```
 
-Ensure that you are on Typescript version **4.5 or above** and have the following settings enabled in
-`compilerOptions` section of `tsconfig.json`:
+Ensure that you are on Typescript version **4.5 or above** and have the
+following settings enabled in `compilerOptions` section of `tsconfig.json`:
 
 ```json
 "emitDecoratorMetadata": true,
@@ -55,16 +60,17 @@ Ensure that you are on Typescript version **4.5 or above** and have the followin
 
 ### Configure environment variables
 
-Let's copy the `project name`, `clientId` and `clientSecret` from the command shown
-in the [create a project section](#create-project) above.
+Let's copy the `project name`, `clientId` and `clientSecret` from the command
+shown in the [create a project section](#create-project) above.
 
 Now that we have created the project, lets set up the environment variables
 which will allow the application to connect with Tigris.
 
-We will use the project name, clientId and clientSecret from the [previous step](#create-project)
+We will use the project name, clientId and clientSecret from the
+[previous step](#create-project)
 
 ```dotenv title=.env
-TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_URI={tigris_region_uri}
 TIGRIS_PROJECT=myapp
 TIGRIS_CLIENT_ID=ftSUj9B5czFW79s9M6YUkxKE3H4WeRyY
 TIGRIS_CLIENT_SECRET=DOxxx
@@ -82,8 +88,8 @@ const tigrisClient = new Tigris();
 ### Define the data model
 
 Every Tigris project comes with a pre-configured database and stores data
-records as documents. Documents are analogous to JSON objects grouped in
-a [Collection](/docs/concepts/database).
+records as documents. Documents are analogous to JSON objects grouped in a
+[Collection](/docs/concepts/database).
 
 Let's create a data model to define the collection. We will be storing the data
 models in the directory `db/models`.
@@ -127,10 +133,10 @@ class Catalog {
 ```
 
 Let's see what is going on here. You've imported the Tigris `@TigrisCollection`
-decorator, which accepts a collection name as an argument to create a collection.
-The `TigrisDataTypes` type gives you access to the Tigris data types.
-`@Field` decorator defines the collection fields and the `@PrimaryKey` decorator
-define the primary of the collection.
+decorator, which accepts a collection name as an argument to create a
+collection. The `TigrisDataTypes` type gives you access to the Tigris data
+types. `@Field` decorator defines the collection fields and the `@PrimaryKey`
+decorator define the primary of the collection.
 
 ### Initialize the branch and create the collection
 
@@ -141,10 +147,10 @@ await tigrisClient.getDatabase().initializeBranch();
 await tigrisClient.registerSchemas([Catalog]);
 ```
 
-Here we have used the `initializeBranch` which creates the database branch
-if it does not exist. We have also used the `registerSchemas` method, which
-takes in an array of all the model classes defined in your `db/model` directory.
-In our case we have a single model class `Catalog`. Tigris will create a collection
+Here we have used the `initializeBranch` which creates the database branch if it
+does not exist. We have also used the `registerSchemas` method, which takes in
+an array of all the model classes defined in your `db/model` directory. In our
+case we have a single model class `Catalog`. Tigris will create a collection
 named `catalog` corresponding to the model class `Catalog`.
 
 ### Query the collection
@@ -159,7 +165,8 @@ const cursor = collection.findMany();
 const results = await cursor.toArray();
 ```
 
-Here we used a simple `findMany()` function to read all the documents from the collection.
+Here we used a simple `findMany()` function to read all the documents from the
+collection.
 
 ### Using a setup script
 

@@ -22,6 +22,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/concepts/project/",
+      "destination": "/docs/concepts/projects/",
+      "permanent": true
+    },
+    {
       "source": "/docs/documents/documents/",
       "destination": "/docs/concepts/database/documents/",
       "permanent": true

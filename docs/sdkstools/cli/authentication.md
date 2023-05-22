@@ -2,28 +2,28 @@
 
 ## User authentication
 
-Every request on the cloud Tigris platform must be authenticated.
-To authenticate yourself using CLI, run the following command:
+Every request on the cloud Tigris platform must be authenticated. To
+authenticate yourself using CLI, run the following command:
 
 ```shell
 tigris login api.preview.tigrisdata.cloud
 ```
 
-The command initiates login flow by opening authentication page
-in the browser.
+The command initiates login flow by opening authentication page in the browser.
 
-First step is to enter organization name (can be found in the beta invitaion e-mail)
+First step is to enter organization name (can be found in the beta invitaion
+e-mail)
 
 ![Enter organization](/img/screenshots/auth_enter_org.png "Enter organization prompt")
 
-Enter organization name and click "Continue" button.
-You'll be redirected to OpenID Connect provider selection page.
-Tigris support "Google" and "GitHub" providers.
+Enter organization name and click "Continue" button. You'll be redirected to
+OpenID Connect provider selection page. Tigris support "Google" and "GitHub"
+providers.
 
 ![Select OIDC provider](/img/screenshots/auth_select_oidc.png "Select OIDC provider")
 
-Once selected, you may be asked to login to your Google or GitHub account, if you
-are not logged in yet.
+Once selected, you may be asked to login to your Google or GitHub account, if
+you are not logged in yet.
 
 On successful authentication you'll see the following message in the browser:
 
@@ -36,7 +36,8 @@ In the terminal you'll see success message as well:
 
 ![Successfully authenticated](/img/screenshots/auth_success_terminal.png "Select authenticated")
 
-You are authenticated now and can start executing CLI [commands](./commands/index.mdx) against the Tigris instance.
+You are authenticated now and can start executing CLI
+[commands](./commands/index.mdx) against the Tigris instance.
 
 ## Checking current authentication information
 
@@ -54,11 +55,14 @@ url: api.preview.tigrisdata.cloud
 ```
 
 :::caution
-Please make sure to keep the token secure. Whoever possess the token
-can execute any command on your name.
+
+Please make sure to keep the token secure. Whoever possesses the token can
+execute any command on your name.
+
 :::
 
-The token can be provided as authorization header to authenticate bare [HTTP APIs](/docs/references/api):
+The token can be provided as authorization header to authenticate bare
+[HTTP APIs](/docs/references/api):
 
 ```
 Authorization: Bearer <token value>
@@ -66,8 +70,8 @@ Authorization: Bearer <token value>
 
 ## Application credentials
 
-To authenticate applications written using Tigris SDKs, credentials
-need to be created, by running:
+To authenticate applications written using Tigris SDKs, credentials need to be
+created, by running:
 
 ```shell
 tigris create application your_app_name "human readable description"
@@ -88,5 +92,7 @@ authentication configuration:
 ```
 
 :::caution
+
 Please make sure to keep the client id and secret in a safe place.
+
 :::

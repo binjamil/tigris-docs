@@ -31,7 +31,7 @@ Create or update a `.env` file (see
 with the following variables:
 
 ```title=.env
-TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_URI="TIGRIS_REGION_URI"
 TIGRIS_CLIENT_ID="TIGRIS_PROJECT_CLIENT_ID"
 TIGRIS_CLIENT_SECRET="TIGRIS_PROJECT_CLIENT_SECRET"
 TIGRIS_PROJECT="TIGRIS_PROJECT_NAME"

@@ -19,7 +19,7 @@ export default function Homepage() {
       <div className="pad">
         <div className="center homepage-content">
           <div id="hero">
-            <h2>Tigris Documentation</h2>
+            <h1>Tigris Documentation</h1>
             <p>
               Tigris is a Serverless NoSQL Database and Search Platform designed
               to simplify building high-performance applications.
@@ -35,8 +35,7 @@ export default function Homepage() {
               you to focus on building great applications instead.
             </p>
           </div>
-
-          <Section title="Get to know Tigris">
+          <Section title="Get to know Tigris" HeadingTag="h2">
             <Card
               title="Quickstarts"
               description="Essential guides to get you up and running quickly"
@@ -69,11 +68,32 @@ export default function Homepage() {
             />
           </Section>
 
-          <Section title="Core Features" id="core-features" HeadingTag="h3">
+          <h2>Products</h2>
+          <Section title="Database" id="database" HeadingTag="h3">
             <Card
               title="NoSQL Database"
               description="Build responsive apps with a serverless NoSQL database designed to perform consistently at any scale. Offers support for ACID transactions, high availability, automatic database sharding and data security."
               to="/concepts/database/"
+              icon={<YellowStar />}
+            />
+            <Card
+              title="Database to Search Synchronization"
+              description="Tigris can automatically create a search indexes for database collections and manage synchronizing collections from the database into a search index."
+              to="/concepts/database/search/"
+              icon={<GreenStar />}
+            />
+            <Card
+              title="MongoDB compatibility"
+              description="Tigris MongoDB compatibility enables you to use Tigris as an alternative to MongoDB and MongoDB Atlas."
+              to="/concepts/mongodb-compatibility/"
+              icon={<GreenStar />}
+            />
+          </Section>
+          <Section title="Search" id="search" HeadingTag="h3">
+            <Card
+              title="Full-Text Search"
+              description="Deliver delightful search experiences through a unified platform that combines database, full-text search, and sync mechanism, providing the fastest and easiest way to build search capabilities into applications."
+              to="/concepts/searching/"
               icon={<YellowStar />}
             />
             <Card
@@ -82,24 +102,9 @@ export default function Homepage() {
               to="/concepts/vector-search/"
               icon={<GreenStar />}
             />
-            <Card
-              title="Full-text Search"
-              description="Deliver delightful search experiences through a unified platform that combines database, full-text search, and sync mechanism, providing the fastest and easiest way to build search capabilities into applications."
-              to="/concepts/searching/"
-              icon={<YellowStar />}
-            />
-            <Card
-              title="MongoDB compatibility"
-              description="Tigris MongoDB compatibility enables you to use Tigris as an alternative to MongoDB and MongoDB Atlas."
-              to="/concepts/mongodb-compatibility"
-              icon={<GreenStar />}
-            />
           </Section>
-
           <SDKCards />
-
           <CliToolsCards />
-
           <Section title="API Reference">
             <Card
               title="API Reference"

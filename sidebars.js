@@ -111,7 +111,7 @@ const sidebars = {
       id: "concepts/index",
     },
     "concepts/architecture/index",
-    "concepts/project/index",
+    "concepts/projects/index",
     {
       type: "category",
       label: "Database",
@@ -149,7 +149,7 @@ const sidebars = {
     {
       type: "doc",
       label: "Full-text Search",
-      id: "concepts/searching/full-text-search",
+      id: "concepts/searching/index",
     },
     {
       type: "category",

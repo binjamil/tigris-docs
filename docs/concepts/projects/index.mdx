@@ -1,0 +1,71 @@
+import tigrisConfig from "@site/tigris.config.js";
+
+# Projects
+
+A project within Tigris is a conceptual container for Tigris products,
+configuration, and access using application keys.
+
+Every Tigris project contains the following:
+
+- A [transactional document database](../database/database.md) built on
+  [FoundationDB](https://blog.tigrisdata.com/building-a-database-using-foundationdb).
+- A serverless [full-text search engine](/docs/concepts/searching/) built on
+  [TypeSense](https://typesense.org/).
+- Application keys to enable programmatic access to the Tigris HTTP API either
+  directly using a [Tigris SDK or other tools](../../sdkstools/index.mdx).
+
+## Regions
+
+Projects can be created in the following regions and accessed using the
+associated URI:
+
+| Region Identifier | URI                                        |
+| ----------------- | ------------------------------------------ |
+| **aws-us-east-1** | `api.cell1.us-east-1.aws.tigrisdata.cloud` |
+| **aws-us-west-2** | `api.preview.tigrisdata.cloud`             |
+| **aws-eu-west-2** | `api.cell1.eu-west-2.aws.tigrisdata.cloud` |
+
+Each region maps to an
+[AWS region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).
+
+## Application keys
+
+Application keys to enable programmatic access to the Tigris HTTP API either
+directly using a [Tigris SDK or other Tigris tool](../../sdkstools/index.mdx).
+
+Application keys consist of a client ID and a client secret.
+
+Application keys can be managed within the **Application Keys** section of a
+project in the <a href={tigrisConfig.loginUrl}>Tigris Cloud web console</a> or
+by using the Tigris CLI
+[`create app_key`](../../sdkstools/cli/commands/tigris_create_app_key.md)
+command.
+
+## Project configuration
+
+Configuration for a project is required to use the Tigris APIs either directly
+or using an SDK. Project configuration consists of:
+
+| Configuration       | Value description                                                                                  |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| **Project name**    | the name you've given the project                                                                  |
+| **Uri**             | the URI to the region the project has been created within                                          |
+| **Client ID**       | the application key client ID used to authenticate with Tigris                                     |
+| **Client secret**   | the application key client secret used to authenticate with Tigris                                 |
+| **Database branch** | the [database branch](/docs/concepts/database/branching/) to use with the database for the project |
+
+### Project configuration environment variables
+
+Project configuration is conventionally stored within environment variables. The
+Tigris SDKs look for values within these environmental variables by default.
+However, you can also pass values to the SDKs directly.
+
+The environment variables for project configuration are as follows:
+
+| Environment variable name | Value description                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------- |
+| `TIGRIS_PROJECT`          | the name you've given the project                                                                  |
+| `TIGRIS_URI`              | the URI to the region the project has been created within                                          |
+| `TIGRIS_CLIENT_ID`        | the application key client ID used to authenticate with Tigris                                     |
+| `TIGRIS_CLIENT_SECRET`    | the application key client secret used to authenticate with Tigris                                 |
+| `TIGRIS_DB_BRANCH`        | the [database branch](/docs/concepts/database/branching/) to use with the database for the project |

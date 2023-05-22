@@ -3,9 +3,9 @@ import QuickstartFooter from "./_quickstart_footer.mdx";
 
 # Quickstart: Go
 
-The following guide will get you up and running with Tigris. It covers
-data modeling, creating database and collection, writing queries to read and
-write data, and performing search all without touching any infrastructure.
+The following guide will get you up and running with Tigris. It covers data
+modeling, creating database and collection, writing queries to read and write
+data, and performing search all without touching any infrastructure.
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ func main() {
 	// Connect to the Tigris backend, create the database and collection if they don't exist,
 	// otherwise update the schema of the collection if it already exists
 	cfg := &tigris.Config{
-		URL:          "api.preview.tigrisdata.cloud",
+		URL:          "your_tigris_uri",
 		ClientID:     "your_client_id_here",
 		ClientSecret: "your_client_secret_here",
 	}

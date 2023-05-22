@@ -45,19 +45,21 @@ import com.tigrisdata.db.type.*;
 
 ## Client
 
-The Tigris Java client libraries offer both **asynchronous** and **synchronous** clients.
+The Tigris Java client libraries offer both **asynchronous** and **synchronous**
+clients.
 
-The asynchronous client provides non-blocking, asynchronous APIs for interacting with Tigris.
-These APIs let you use the SDK to build scalable applications that use system resources in an
-efficient way.
+The asynchronous client provides non-blocking, asynchronous APIs for interacting
+with Tigris. These APIs let you use the SDK to build scalable applications that
+use system resources in an efficient way.
 
-While the synchronous clients cater to a wider audience, and also make the client libraries
-approachable for users not familiar with asynchronous programming.
+While the synchronous clients cater to a wider audience, and also make the
+client libraries approachable for users not familiar with asynchronous
+programming.
 
 :::tip
 
-We recommend using the asynchronous clients for production systems to
-maximize the use of system resources.
+We recommend using the asynchronous clients for production systems to maximize
+the use of system resources.
 
 :::
 
@@ -66,12 +68,12 @@ maximize the use of system resources.
 <Tabs>
 <TabItem value="Tigris Cloud" label="Tigris Cloud">
 
-Tigris URL, ClientID and ClientSecret need to be set as follows,
-in order to connect to the hosted platform:
+Tigris URL, ClientID and ClientSecret need to be set as follows, in order to
+connect to the hosted platform:
 
 ```java
 TigrisConfiguration configuration = TigrisConfiguration.newBuilder(
-        "api.preview.tigrisdata.cloud",
+        "<tigris-region-uri>",
         "<your-tigris-project-name>"
     ).withAuthConfig(new TigrisConfiguration.AuthConfig("paste client_id here", "paste client_secret here"))
     .build();
@@ -115,8 +117,8 @@ TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configurat
 
 ### Create Project
 
-Use Tigris web-console or CLI to create a Tigris project. Creation of
-project will create the database automatically.
+Use Tigris web-console or CLI to create a Tigris project. Creation of project
+will create the database automatically.
 
 ### Retrieve database
 
@@ -142,8 +144,8 @@ TigrisAsyncDatabase db = asyncClient.getDatabase();
 
 ### Create collection
 
-Create a collection mapping to `User.class`. Read more about [declaring class
-models](database/datamodel/declare.md) for Tigris collection.
+Create a collection mapping to `User.class`. Read more about
+[declaring class models](database/datamodel/declare.md) for Tigris collection.
 
 <Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>

@@ -12,7 +12,8 @@ import Installation from "@site/docs/includes/_install_cloud_login.mdx";
 
 # Add Tigris to an existing Next.js Application
 
-In this guide we will take an existing Next.js [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
+In this guide we will take an existing Next.js
+[blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
 application. This application is static in nature. We will make it dynamic by
 adding comments feature that will use Tigris for data storage and retrieval.
 
@@ -34,9 +35,9 @@ npx create-next-app@latest --example blog-starter
   <CodeBlock language="shell">{createNextAppOutput}</CodeBlock>
 </TerminalWindow>
 
-This is a simple command to quickly start building a new Next.js application based off a template.
-It may ask you a project name to download the project resources. We choose `my-nextjs-blog` as our
-project name.
+This is a simple command to quickly start building a new Next.js application
+based off a template. It may ask you a project name to download the project
+resources. We choose `my-nextjs-blog` as our project name.
 
 Change to `my-nextjs-blog` directory and install the Tigris SDK:
 
@@ -47,8 +48,8 @@ npm install @tigrisdata/core@latest
 
 ### Create Tigris Project
 
-Now let's create a Tigris project for our blogging application.
-Click on the `Create a new project` button from the
+Now let's create a Tigris project for our blogging application. Click on the
+`Create a new project` button from the
 
 <a href={tigrisConfig.consoleUrl}>Tigris Cloud dashboard</a>.
 
@@ -64,18 +65,19 @@ a command to generate application code with Tigris pre-configured.
 As we are not creating a new application, rather adding Tigris to an existing
 application, we don't need to run this command.
 
-Let's copy the `project name`, `clientId` and `clientSecret` from the command shown
-and close the modal.
+Let's copy the `project name`, `uri`, `clientId` and `clientSecret` from the
+command shown and close the modal.
 
 ### Configure environment variables
 
 Now that we have created the project, lets set up the environment variables
 which will allow the blog application to connect with Tigris.
 
-We will use the project name, clientId and clientSecret from the previous step
+We will use the project name, URI, clientId and clientSecret from the previous
+step
 
 ```dotenv title=.env.local
-TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_URI=tigris_uri
 TIGRIS_PROJECT=MyNextjsBlog
 TIGRIS_CLIENT_ID=ftSUj9B5czFW79s9M6YUkxKE3H4WeRyY
 TIGRIS_CLIENT_SECRET=DOxxx
@@ -123,8 +125,8 @@ Let's ensure that the required settings are enabled in `tsconfig.json`.
 ### Create a Tigris Collection
 
 Every Tigris project comes with a pre-configured database and stores data
-records as documents. Documents are analogous to JSON objects grouped in
-a [Collection](/docs/concepts/database).
+records as documents. Documents are analogous to JSON objects grouped in a
+[Collection](/docs/concepts/database).
 
 Let's create a data model to define the collection. We will be storing the data
 models in the directory `db/models`.
@@ -154,10 +156,10 @@ export class Comments {
 ```
 
 Let's see what is going on here. You've imported the Tigris `@TigrisCollection`
-decorator, which accepts a collection name as an argument to create a collection.
-The `TigrisDataTypes` type gives you access to the Tigris data types.
-`@Field` decorator defines the collection fields and the `@PrimaryKey` decorator
-define the primary of the collection.
+decorator, which accepts a collection name as an argument to create a
+collection. The `TigrisDataTypes` type gives you access to the Tigris data
+types. `@Field` decorator defines the collection fields and the `@PrimaryKey`
+decorator define the primary of the collection.
 
 ### Create a setup script
 
@@ -191,9 +193,8 @@ main()
 
 Here we have used the `registerSchemas` method, which takes in an array of all
 the model classes defined in your `db/model` directory. In our case we have a
-single model class `Comments`.
-When this script is executed Tigris will create a collection named `comments`
-corresponding to the model class `Comments`.
+single model class `Comments`. When this script is executed Tigris will create a
+collection named `comments` corresponding to the model class `Comments`.
 
 Next, let's add `setup.ts` as one of the scripts in `package.json`.
 
@@ -267,8 +268,8 @@ collection and returned them as json.
 
 #### ⌲ POST `/api/comments` to add a new blog data.
 
-Next, create a `POST` handler in the same file `pages/api/comments/index.ts` where
-we added the `GET` handler above. This will store a new comment in the
+Next, create a `POST` handler in the same file `pages/api/comments/index.ts`
+where we added the `GET` handler above. This will store a new comment in the
 `Comments` collection.
 
 ```ts title=pages/api/comments/index.ts
@@ -315,7 +316,8 @@ The search endpoint will allow users to find comments in the collection. Let's
 add this endpoint that accepts a query parameter and responds with matching
 results. Eg. GET `/api/comments/search?q="query"`
 
-Create a `search.ts` file in the `pages/api/comments` directory and add the code:
+Create a `search.ts` file in the `pages/api/comments` directory and add the
+code:
 
 ```ts title=pages/api/comments/search.ts
 import { NextApiRequest, NextApiResponse } from "next";
@@ -352,18 +354,21 @@ export default async function handler(
 }
 ```
 
-:::tip Built-in search
-Tigris makes it really easy to implement [search](/docs/sdkstools/typescript/database/search)
-within your applications by providing a serverless full-text search engine that
-makes all your data instantly searchable.
+:::tip
+
+Built-in search Tigris makes it really easy to implement
+[search](/docs/sdkstools/typescript/database/search) within your applications by
+providing a serverless full-text search engine that makes all your data
+instantly searchable.
+
 :::
 
 ### Use in the components
 
 Now you can request the API to fetch and manipulate the data from your Tigris
 database in clients components. First, create `comment.tsx` and
-`each-comments.tsx` files in the `components` directory to create the
-components for the comments.
+`each-comments.tsx` files in the `components` directory to create the components
+for the comments.
 
 Inside the `components/each-comments.tsx` file, add the following code:
 
@@ -404,8 +409,8 @@ export default EachComments;
 ```
 
 Next, let's define the React component that is rendered on the browser using the
-API endpoints we created in the previous section.
-Add the code below to the `components/comment.tsx` file:
+API endpoints we created in the previous section. Add the code below to the
+`components/comment.tsx` file:
 
 ```tsx title=components/comment.tsx
 import { useEffect, useState } from "react";
@@ -568,11 +573,13 @@ Head over to one of the blog posts and you will see the comments form.
 
 ![blog-starter application post with comments form](/img/screenshots/nextjs-blog-starter-comments.jpg)
 
-Now, if you go back to your <a href={`${tigrisConfig.consoleUrl}/project/MyNextjsBlog/database`}>Tigris Cloud console</a>,
-you will see the collection for the project and as you will add the comments you
-will see the data show up.
+Now, if you go back to your <a
+href={`${tigrisConfig.consoleUrl}/project/MyNextjsBlog/database`}>Tigris Cloud
+console</a>, you will see the collection for the project and as you will add the
+comments you will see the data show up.
 
-In this guide we have seen how to use Tigris to make an existing Next.js application dynamic.
+In this guide we have seen how to use Tigris to make an existing Next.js
+application dynamic.
 
 ## Next steps
 

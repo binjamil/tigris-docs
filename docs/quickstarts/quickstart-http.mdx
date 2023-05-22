@@ -3,9 +3,9 @@ import QuickstartFooter from "./_quickstart_footer.mdx";
 
 # Quickstart: HTTP
 
-The following guide will get you up and running with Tigris. It covers
-data modeling, creating database and collection, writing queries to read and
-write data, and performing search all without touching any infrastructure.
+The following guide will get you up and running with Tigris. It covers data
+modeling, creating database and collection, writing queries to read and write
+data, and performing search all without touching any infrastructure.
 
 ## Prerequisites
 
@@ -21,21 +21,21 @@ We will have to fetch the auth token first. For all the subsequent API calls we
 will be using this token.
 
 ```shell
-curl -X POST https://api.preview.tigrisdata.cloud/v1/auth/token \
+curl -X POST https://{your_tigris_uri}/v1/auth/token \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data grant_type=client_credentials \
-  --data client_id=your_client_id_here \
-  --data client_secret=your_client_secret_here
+  --data client_id={your_client_id_here} \
+  --data client_secret={your_client_secret_here}
 ```
 
-Use the clientID and clientSecret from the output of the
-`tigris create project` command above.
+Use the clientID and clientSecret from the output of the `tigris create project`
+command above.
 
 <details>
 <summary>Output</summary>
 
 ```json
-{ "access_token": "your_token_here", "expires_in": 86400 }
+{ "access_token": "{your_token_here}", "expires_in": 86400 }
 ```
 
 </details>
@@ -44,24 +44,23 @@ We will be using the token in all the subsequent API calls.
 
 ### Creating database and collection
 
-For this quickstart we will create a database named _sampledb_ and then
-create a collection _users_ inside it.
+For this quickstart we will create a database named _sampledb_ and then create a
+collection _users_ inside it.
 
-Creating a database is as easy as calling an API, and it is ready in an
-instant.
+Creating a database is as easy as calling an API, and it is ready in an instant.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/branches/sampledb/create \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/branches/sampledb/create \
       -X POST \
       -H "Authorization: Bearer your_token_here"
 ```
 
-Similarly, a collection is instantaneously created through the API. In
-Tigris, a collection is an ordered set of records called documents that all
-follow a specific schema and whose fields are strongly typed.
+Similarly, a collection is instantaneously created through the API. In Tigris, a
+collection is an ordered set of records called documents that all follow a
+specific schema and whose fields are strongly typed.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/createOrUpdate \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/createOrUpdate \
       -X POST \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -93,17 +92,17 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 The schema of the collections created above can be fetched as follows
 
 ```shell
-curl -X POST https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/describe \
+curl -X POST https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/describe \
       -H "Authorization: Bearer your_token_here"
 ```
 
 ### Insert some documents
 
-The following example will replace documents with the same `id` if they
-already exist, or create new documents if they don't exist with the same `id`.
+The following example will replace documents with the same `id` if they already
+exist, or create new documents if they don't exist with the same `id`.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/documents/insert \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/documents/insert \
       -X POST \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -120,7 +119,7 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 Read the document from the collection by using its `id`.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/documents/read \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/documents/read \
       -X POST \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -134,7 +133,7 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 Read the document from the collection by using the field `name`.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/documents/read \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/documents/read \
       -X POST \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -148,7 +147,7 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 Update one of the fields in a document by using its `id`.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/documents/update \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/documents/update \
       -X PUT \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -165,7 +164,7 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 Search for users with `name` like "bunny" and `balance` greater than 500
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/documents/search \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/documents/search \
       -X POST \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -178,11 +177,11 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 
 ### Delete documents
 
-Use the delete API to remove the documents from the collection
-based on the filter.
+Use the delete API to remove the documents from the collection based on the
+filter.
 
 ```shell
-curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/documents/delete \
+curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/documents/delete \
       -X DELETE \
       -H "Authorization: Bearer your_token_here" \
       -H "Content-Type: application/json" \
@@ -198,11 +197,11 @@ curl https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collec
 
 ### Drop database
 
-Finally, drop the database _users_ we have created for this quickstart
-with all its collections.
+Finally, drop the database _users_ we have created for this quickstart with all
+its collections.
 
 ```shell
-curl -X DELETE https://api.preview.tigrisdata.cloud/v1/projects/quickstart/database/collections/users/drop \
+curl -X DELETE https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/drop \
       -H "Authorization: Bearer your_token_here"
 ```
 

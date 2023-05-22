@@ -3,9 +3,9 @@ import QuickstartFooter from "./_quickstart_footer.mdx";
 
 # Quickstart: Java
 
-The following guide will get you up and running with Tigris. It covers
-data modeling, creating database and collection, writing queries to read and
-write data, and performing search all without touching any infrastructure.
+The following guide will get you up and running with Tigris. It covers data
+modeling, creating database and collection, writing queries to read and write
+data, and performing search all without touching any infrastructure.
 
 ## Prerequisites
 
@@ -26,9 +26,9 @@ All you'll need is any computer running macOS or Linux, with
 </dependency>
 ```
 
-For latest version and for other dependency management or build
-tool you can refer to dependency
-snippet from [here](https://mvnrepository.com/artifact/com.tigrisdata/tigris-client)
+For latest version and for other dependency management or build tool you can
+refer to dependency snippet from
+[here](https://mvnrepository.com/artifact/com.tigrisdata/tigris-client)
 
 ### Code
 
@@ -51,7 +51,7 @@ public class TigrisApp {
     public static void main(String[] args) throws TigrisException {
         // configure the client
         TigrisConfiguration config =
-            TigrisConfiguration.newBuilder("api.preview.tigrisdata.cloud")
+            TigrisConfiguration.newBuilder("paste Tigris URI here")
                 .withAuthConfig(
                     new TigrisConfiguration.AuthConfig("paste client_id here", "paste client_secret here"))
                 .build();

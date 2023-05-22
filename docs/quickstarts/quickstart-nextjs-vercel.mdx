@@ -5,9 +5,10 @@ title: Next.js, Tigris & Vercel Quick Start
 import tigrisConfig from "@site/tigris.config.js";
 import NextjsGuidesSection from "@site/src/components/NextjsGuidesSection";
 
-This guide focuses on demonstrating how easy it is to deploy a Next.js application built with Tigris
-to Vercel. Vercel can integrate with GitHub, GitLab or Bitbucket repositories for automatic
-deployments on every branch push and merges.
+This guide focuses on demonstrating how easy it is to deploy a Next.js
+application built with Tigris to Vercel. Vercel can integrate with GitHub,
+GitLab or Bitbucket repositories for automatic deployments on every branch push
+and merges.
 
 ## Prerequisites
 
@@ -25,37 +26,42 @@ deployments on every branch push and merges.
 
 ## Deploy
 
-Hit the deploy button to fork [Tigris and Next.js example repo](https://github.com/tigrisdata/tigris-vercel-starter/)
+Hit the deploy button to fork
+[Tigris and Next.js example repo](https://github.com/tigrisdata/tigris-vercel-starter/)
 to your account and follow instructions
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftigrisdata%2Ftigris-vercel-starter&project-name=todo-list-app-tigris&repo-name=todo-list-webapp-tigris&demo-title=My%20To-do%20list%20webapp&demo-description=A%20To-do%20list%20webapp%20using%20NextJS%20and%20Tigris&integration-ids=oac_Orjx197uMuJobdSaEpVv2Zn8)
 
-You should see the following landing page, link account and create a Git repository:
+You should see the following landing page, link account and create a Git
+repository:
 ![Vercel deployment landing](/img/screenshots/vercel-deploy-landing.jpg)
 
-Click on `Add` button to add Tigris integration to your application. A pop-up window will ask you
-to log in to your Tigris account:
+Click on `Add` button to add Tigris integration to your application. A pop-up
+window will ask you to log in to your Tigris account:
 ![Add Vercel integration](/img/screenshots/vercel-deploy-add-integration.jpg)
 
-An application key is required by your application to access Tigris cloud. You can "create a new
-application key" or use an existing one from your account. Click `Continue`:
+An application key is required by your application to access Tigris Cloud. You
+can "create a new application key" or use an existing one from your account.
+Click `Continue`:
 ![Add application key](/img/screenshots/vercel-deploy-tigris-console.jpg)
 
-The Tigris integration will automatically populate following environment variables for your project:
+The Tigris integration will automatically populate following environment
+variables for your project:
 
 ```
-TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_URI="Tigris region URI"
 TIGRIS_PROJECT="your project name"
 TIGRIS_CLIENT_ID="Your application's client id"
 TIGRIS_CLIENT_SECRET="Your application's secret key"
 TIGRIS_DB_BRANCH="the branch for your database"
 ```
 
-:tada: Congratulations, you have just deployed a fullstack app using Next.js and Tigris
-![Congratulations](/img/screenshots/vercel-deploy-success.jpg)
+:tada: Congratulations, you have just deployed a fullstack app using Next.js and
+Tigris ![Congratulations](/img/screenshots/vercel-deploy-success.jpg)
 
 ## Where to go from here?
 
-We have a few other guides to help you build a dynamic data-rich Next.js app with Tigris.
+We have a few other guides to help you build a dynamic data-rich Next.js app
+with Tigris.
 
 <NextjsGuidesSection className="two-cols" />

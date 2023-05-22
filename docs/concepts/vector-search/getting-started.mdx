@@ -1,10 +1,14 @@
 import tigrisConfig from "@site/tigris.config.js";
 
+export const SignUp = () => {
+  return <a href={tigrisConfig.signupUrl}>sign up for a free Tigris account</a>;
+};
+
 # Getting Started
 
-Tigris makes it easy to build AI applications with vector embeddings. It is a fully
-managed cloud-native database that allows you store and index documents and vector
-embeddings for fast and scalable vector search.
+Tigris makes it easy to build AI applications with vector embeddings. It is a
+fully managed cloud-native database that allows you store and index documents
+and vector embeddings for fast and scalable vector search.
 
 ## 1. Install the client
 
@@ -16,23 +20,24 @@ npm install @tigrisdata/vector
 
 ## 2. Fetch Tigris API credentials
 
-You can sign up for a free Tigris account <a href={tigrisConfig.signupUrl}>here</a>.
+You can <SignUp />.
 
-Once you have signed up for the Tigris account, create a new project
-called `vectordemo`. Next, make a note of the `clientId` and `clientSecret`,
-which you can get from the **Application Keys** section of the project.
+Once you have signed up for the Tigris account, create a new project called
+`vectordemo`. Next, make a note of the Uri for the region you've created your
+project in, the `clientId` and `clientSecret`. You can get all this information
+from the **Application Keys** section of the project.
 
 ## 3. Create the Vector Database client
 
-We will use the project name, clientId and clientSecret from the previous step to
-create the vector database client.
+We will use the project name, URI, clientId and clientSecret from the previous
+step to create the vector database client.
 
 ```ts
 import { VectorDocumentStore } from "@tigrisdata/vector";
 
 const vectorDocStore = new VectorDocumentStore({
   connection: {
-    serverUrl: "api.preview.tigrisdata.cloud",
+    serverUrl: "region_uri_here",
     projectName: "vectordemo",
     clientId: "clientId_here",
     clientSecret: "clientSecret_here",
@@ -43,10 +48,10 @@ const vectorDocStore = new VectorDocumentStore({
 ```
 
 Here, we have created a new `VectorDocumentStore` instance that connects to the
-Tigris Vector Database. The `indexName` is the name of the index that will
-store your embeddings, documents, and any additional metadata. You can use any
-name you like for the index. The `numDimensions` is the number of dimensions of
-the vector embeddings.
+Tigris Vector Database. The `indexName` is the name of the index that will store
+your embeddings, documents, and any additional metadata. You can use any name
+you like for the index. The `numDimensions` is the number of dimensions of the
+vector embeddings.
 
 ## 4. Add documents to the index
 
@@ -74,16 +79,16 @@ await vectorDocStore.addDocumentsWithVectors({
 });
 ```
 
-Here, we have added two documents to the index. The `ids` are the unique identifiers
-for the documents. The `embeddings` are the vector embeddings for the documents. The
-`documents` are the actual documents that you want to store in the index. The `content`
-is the text content of the document. The `metadata` is any additional metadata that
-you want to store for the document.
+Here, we have added two documents to the index. The `ids` are the unique
+identifiers for the documents. The `embeddings` are the vector embeddings for
+the documents. The `documents` are the actual documents that you want to store
+in the index. The `content` is the text content of the document. The `metadata`
+is any additional metadata that you want to store for the document.
 
 ## 5. Query the index
 
-You can query the index for the top k most similar documents to a given vector. It's
-that simple!
+You can query the index for the top k most similar documents to a given vector.
+It's that simple!
 
 ```ts
 const results = await vectorDocStore.similaritySearchVectorWithScore({
@@ -95,8 +100,9 @@ console.log(JSON.stringify(results, null, 2));
 
 ## Next Steps
 
-- Try the [Vector Search quickstart](../../../quickstarts/quickstart-vector-search)
-  that uses the OpenAI Embeddings API to generate embeddings for your documents
-  and then use Tigris to index these embeddings for fast and scalable vector search.
+- Try the
+  [Vector Search quickstart](../../../quickstarts/quickstart-vector-search) that
+  uses the OpenAI Embeddings API to generate embeddings for your documents and
+  then use Tigris to index these embeddings for fast and scalable vector search.
 - Explore the [Hybrid Search section](../hybrid-search) to learn how to combine
   vector search with attribute filtering for more relevant search results.
