@@ -274,7 +274,6 @@ const sidebars = {
           },
           collapsed: true,
           items: [
-            "sdkstools/typescript/index",
             {
               type: "category",
               label: "Database",
