@@ -141,9 +141,21 @@ const sidebars = {
         id: "concepts/vector-search/index",
       },
       items: [
-        "concepts/vector-search/getting-started",
-        "concepts/vector-search/hybrid-search",
-        "concepts/vector-search/usage-guide",
+        {
+          type: "category",
+          label: "TypeScript",
+          link: { type: "doc", id: "concepts/vector-search/typescript/index" },
+          items: [
+            "concepts/vector-search/typescript/hybrid-search",
+            "concepts/vector-search/typescript/usage-guide",
+          ],
+        },
+        {
+          type: "category",
+          label: "Python",
+          link: { type: "doc", id: "concepts/vector-search/python/index" },
+          items: [],
+        },
       ],
     },
     {

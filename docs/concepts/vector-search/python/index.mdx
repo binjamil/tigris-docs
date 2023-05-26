@@ -1,0 +1,284 @@
+# Getting Started
+
+import tigrisConfig from "@site/tigris.config.js";
+
+export const SignUp = () => {
+  return <a href={tigrisConfig.signupUrl}>sign up for a free Tigris account</a>;
+};
+
+Tigris makes it easy to build AI applications with vector embeddings. It is a
+fully managed cloud-native database that allows you store and index documents
+and vector embeddings for fast and scalable vector search.
+
+# 1. Install the client
+
+Ensure that you are on Python version 3.8 or above.
+
+```bash
+pip install tigrisdb
+```
+
+Alternatively, you can install Tigris python client in a Jupyter notebook:
+
+```bash
+!pip3 install tigrisdb
+```
+
+## 2. Fetch Tigris API credentials
+
+You can <SignUp />.
+
+Once you have signed up for the Tigris account, create a new project called
+`vectordemo`. Next, make a note of the Uri for the region you've created your
+project in, the `clientId` and `clientSecret`. You can get all this information
+from the **Application Keys** section of the project.
+
+## 3. Create the Vector Database client
+
+We will use the project name, URI, clientId and clientSecret from the previous
+step to create the vector database client.
+
+```python
+from tigrisdb.client import TigrisClient
+from tigrisdb.types import ClientConfig
+
+client = TigrisClient(
+            config=ClientConfig(
+              server_url=<region uri here>,
+              project_name="vectordemo",
+              client_id=<client id here>,
+              client_secret=<client secret here>
+        )).get_search()
+```
+
+In this step, we have created a `TigrisClient` instance that connects to the Vector Database using
+credentials obtained in the previous step.
+
+## 4. Create Index to store vectors and embeddings
+
+```python
+vector_schema = {
+    "title": "my_embeddings",
+    "additionalProperties": False,
+    "type": "object",
+    "properties": {
+        "id": {"type": "string"},
+        "document": {"type": "string"},
+        "metadata": {"type": "object"},
+        "embeddings": {
+            "type": "array",
+            "format": "vector",
+            "dimensions": 3
+        }
+    }
+}
+
+vector_store = client.create_or_update_index("my_embeddings", schema=vector_schema)
+```
+
+Here, we have created a new vector store named **my_embeddings** with following fields:
+
+- `id` - Unique identifier for your documents
+- `document` - Actual document you want to store
+- `metadata` - Any additional metadata associated with the document
+- `embeddings` - Vector embeddings for the document. The `dimensions` property specifies the vector dimension to be inserted in index.
+
+Feel free to customize the **index name** and vector **dimensions** to your use case.
+
+## 5. Add documents to the Index
+
+```python
+index.create_many([
+    {
+        "id": "id_1",
+        "document": "First document",
+        "metadata": {
+            "category": "shoes"
+        },
+        "embeddings": [ 1.2, 2.3, 4.5 ]
+    },
+    {
+        "id": "id_2",
+        "document": "Another document",
+        "metadata": {
+            "category": "clothing"
+        },
+        "embeddings": [ 6.7, 8.2, 9.2 ]
+    }
+])
+```
+
+We just added two documents with their embeddings to the index. The `metadata` is any additional
+context you want to store for the document.
+
+## 6. Query the Index
+
+Let's perform a similarity search on our index. In order, to find documents closest to
+`[1.0, 2.1, 3.2]`, we will write a query similar to below:
+
+```python
+from tigrisdb.types.search import Query, VectorField
+
+q = Query(
+      vector_query=VectorField(field="embeddings", vector=[1.0, 2.1, 3.2])
+    )
+result = self.index.search(q)
+```
+
+Let's print the contents of search result
+
+```python
+import json
+from dataclasses import asdict
+
+print(json.dumps(asdict(result), default=str, indent=2))
+```
+
+<details>
+  <summary>Output</summary>
+
+```json
+{
+  "hits": [
+    {
+      "doc": {
+        "document": "First document",
+        "embeddings": [1.2, 2.3, 4.5],
+        "id": "id_1",
+        "metadata": {
+          "category": "shoes"
+        }
+      },
+      "meta": {
+        "created_at": "2023-05-26 16:54:41.790028+00:00",
+        "updated_at": null,
+        "text_match": {
+          "score": null,
+          "vector_distance": 0.005762279033660889,
+          "fields": []
+        }
+      }
+    },
+    {
+      "doc": {
+        "metadata": {
+          "category": "clothing"
+        },
+        "document": "Another document",
+        "embeddings": [6.7, 8.2, 9.2],
+        "id": "id_2"
+      },
+      "meta": {
+        "created_at": "2023-05-26 16:54:41.790028+00:00",
+        "updated_at": null,
+        "text_match": {
+          "score": null,
+          "vector_distance": 0.03843367099761963,
+          "fields": []
+        }
+      }
+    }
+  ],
+  "facets": {},
+  "meta": {
+    "found": 2,
+    "total_pages": 1,
+    "page": {
+      "current": 1,
+      "size": 10
+    }
+  },
+  "grouped_hits": []
+}
+```
+
+</details>
+
+Here we see `result.hits` is an array of all matching documents and some vector store metadata. The
+hits are sorted by distance from the given vector. Within each search `hit`, you can access the
+matching document under `doc` key and vector distance under `meta.text_match.vector_distance` key.
+
+Example:
+
+```python
+hit = result.hits[0]
+
+print(json.dumps(hit.doc, indent=2))
+print(hit.meta.text_match.vector_distance)
+```
+
+<details>
+  <summary>Output</summary>
+
+```
+{
+  "document": "First document",
+  "embeddings": [1.2, 2.3, 4.5],
+  "id": "id_1",
+  "metadata": {
+    "category": "shoes"
+  }
+}
+
+0.005762279033660889
+```
+
+</details>
+
+## 7. Vector query with metadata filter
+
+In addition to the vector query, you can filter the search results by metadata. For example, to
+perform a similarity search and only return results where `category == "shoes"`,
+
+```python
+q = Query(
+    vector_query=VectorField(field="embeddings", vector=[1.0, 2.1, 3.2]),
+    filter_by=Eq("metadata.category", "shoes")
+)
+result = self.index.search(q)
+
+print(json.dumps(asdict(result), default=str, indent=2))
+```
+
+<details>
+  <summary>Output</summary>
+
+```json
+{
+  "hits": [
+    {
+      "doc": {
+        "document": "First document",
+        "embeddings": [1.2, 2.3, 4.5],
+        "id": "id_1",
+        "metadata": {
+          "category": "shoes"
+        }
+      },
+      "meta": {
+        "created_at": "2023-05-26 18:27:55.202321+00:00",
+        "updated_at": null,
+        "text_match": {
+          "score": null,
+          "vector_distance": 0.005762279033660889,
+          "fields": []
+        }
+      }
+    }
+  ],
+  "facets": {},
+  "meta": {
+    "found": 1,
+    "total_pages": 1,
+    "page": {
+      "current": 1,
+      "size": 10
+    }
+  },
+  "grouped_hits": []
+}
+```
+
+</details>
+
+Only the documents with matching metadata will be returned.
