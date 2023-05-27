@@ -24,8 +24,8 @@ will be using this token.
 curl -X POST https://{your_tigris_uri}/v1/auth/token \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data grant_type=client_credentials \
-  --data client_id={your_client_id_here} \
-  --data client_secret={your_client_secret_here}
+  --data-urlencode client_id=your_client_id_here \
+  --data-urlencode client_secret=your_client_secret_here
 ```
 
 Use the clientID and clientSecret from the output of the `tigris create project`
@@ -42,22 +42,13 @@ command above.
 
 We will be using the token in all the subsequent API calls.
 
-### Creating database and collection
+### Creating collection
 
-For this quickstart we will create a database named _sampledb_ and then create a
-collection _users_ inside it.
+For this quickstart we will create a collection named _users_.
 
-Creating a database is as easy as calling an API, and it is ready in an instant.
-
-```shell
-curl https://{your_tigris_uri}/v1/projects/quickstart/database/branches/sampledb/create \
-      -X POST \
-      -H "Authorization: Bearer your_token_here"
-```
-
-Similarly, a collection is instantaneously created through the API. In Tigris, a
-collection is an ordered set of records called documents that all follow a
-specific schema and whose fields are strongly typed.
+A collection is instantaneously created through the API. In
+Tigris, a collection is an ordered set of records called documents that all
+follow a specific schema and whose fields are strongly typed.
 
 ```shell
 curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/createOrUpdate \
@@ -89,12 +80,67 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
       }'
 ```
 
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "message": "collection of type 'documents' created successfully",
+  "status": "created"
+}
+```
+
+</details>
+
 The schema of the collections created above can be fetched as follows
 
 ```shell
 curl -X POST https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/describe \
       -H "Authorization: Bearer your_token_here"
 ```
+
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "collection": "users",
+  "metadata": {},
+  "schema": {
+    "title": "users",
+    "properties": {
+      "balance": {
+        "type": "number",
+        "searchIndex": true
+      },
+      "id": {
+        "type": "integer",
+        "format": "int32",
+        "autoGenerate": true
+      },
+      "name": {
+        "type": "string",
+        "searchIndex": true
+      }
+    },
+    "primary_key": ["id"]
+  },
+  "size": 0,
+  "indexes": [
+    {
+      "name": "_tigris_created_at",
+      "state": "INDEX ACTIVE"
+    },
+    {
+      "name": "_tigris_updated_at",
+      "state": "INDEX ACTIVE"
+    }
+  ],
+  "search_status": "Search Active"
+}
+```
+
+</details>
 
 ### Insert some documents
 
@@ -114,6 +160,19 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
       }'
 ```
 
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "metadata": { "created_at": "2023-05-27T02:16:14.710313878Z" },
+  "status": "inserted",
+  "keys": [{ "id": 1 }, { "id": 2 }]
+}
+```
+
+</details>
+
 ### Read a document using the primary key field
 
 Read the document from the collection by using its `id`.
@@ -128,6 +187,21 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
       }'
 ```
 
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "result": {
+    "data": { "name": "Jania McGrory", "balance": 6045.7, "id": 1 },
+    "metadata": { "created_at": "2023-05-27T02:16:14.710313878Z" },
+    "resume_token": "ZGF0YQAAAAIAAB/jAAAf5AEA/wD/H+UAFQE="
+  }
+}
+```
+
+</details>
+
 ### Read a document using any field in the schema
 
 Read the document from the collection by using the field `name`.
@@ -141,6 +215,21 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
         "filter": {"name": "Jania McGrory"}
       }'
 ```
+
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "result": {
+    "data": { "name": "Jania McGrory", "balance": 6045.7, "id": 1 },
+    "metadata": { "created_at": "2023-05-27T02:16:14.710313878Z" },
+    "resume_token": "ZGF0YQAAAAIAAB/jAAAf5AEA/wD/H+UAFQE="
+  }
+}
+```
+
+</details>
 
 ### Update a document
 
@@ -159,6 +248,19 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
       }'
 ```
 
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "metadata": { "updated_at": "2023-05-27T02:18:37.917374249Z" },
+  "status": "updated",
+  "modified_count": 1
+}
+```
+
+</details>
+
 ### Search
 
 Search for users with `name` like "bunny" and `balance` greater than 500
@@ -174,6 +276,34 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
         "filter": {"balance": {"$gt": 500}}
       }'
 ```
+
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "result": {
+    "hits": [
+      {
+        "data": { "id": 2, "name": "Bunny Instone", "balance": 2448.87 },
+        "metadata": {
+          "created_at": "2023-05-27T02:16:14.710313878Z",
+          "updated_at": "2023-05-27T02:18:37.917374249Z"
+        }
+      }
+    ],
+    "facets": {},
+    "meta": {
+      "found": 1,
+      "total_pages": 1,
+      "page": { "current": 1, "size": 20 },
+      "matched_fields": null
+    }
+  }
+}
+```
+
+</details>
 
 ### Delete documents
 
@@ -195,6 +325,18 @@ curl https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users
       }'
 ```
 
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "metadata": { "deleted_at": "2023-05-27T02:20:47.402085521Z" },
+  "status": "deleted"
+}
+```
+
+</details>
+
 ### Drop database
 
 Finally, drop the database _users_ we have created for this quickstart with all
@@ -204,6 +346,15 @@ its collections.
 curl -X DELETE https://{your_tigris_uri}/v1/projects/quickstart/database/collections/users/drop \
       -H "Authorization: Bearer your_token_here"
 ```
+
+<details>
+<summary>Output</summary>
+
+```json
+{ "message": "collection dropped successfully", "status": "dropped" }
+```
+
+</details>
 
 ## Where to go from here?
 

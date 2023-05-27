@@ -43,13 +43,13 @@ tigris login
 The next step is to create the project for the application we will be building
 
 ```shell
-tigris create project "quickstart"
+tigris create project quickstart
 ```
 
 Now we can generate credentials to be used in this quickstart
 
 ```shell
-tigris create app_key quickstart_key "quickstart application" -p "quickstart"
+tigris create app_key default "default key" -p quickstart
 ```
 
 Once the command is executed, it would create the application credentials
@@ -62,11 +62,12 @@ and `secret` from the output.
 ```json
 {
   "id": "your_client_id_here",
-  "name": "quickstart",
-  "description": "quickstart application",
+  "name": "default",
+  "description": "default key",
   "secret": "your_client_secret_here",
   "created_at": 1666248043000,
-  "created_by": "google-oauth2|xxx"
+  "created_by": "google-oauth2|xxx",
+  "project": "quickstart"
 }
 ```
 
