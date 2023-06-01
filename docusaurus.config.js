@@ -29,7 +29,7 @@ const config = {
   clientModules: [require.resolve("./src/util/augmentConsoleLinks.js")],
 
   customFields: {
-    docslyPublicId: process.env.NEXT_DOCSLY_PUBLIC_ID,
+    docslyPublicId: process.env.NEXT_PUBLIC_DOCSLY_PUBLIC_ID,
   },
 
   presets: [
@@ -91,8 +91,9 @@ const config = {
     [
       "posthog-docusaurus",
       {
-        apiKey: process.env.NEXT_POSTHOG_APIKEY,
+        apiKey: process.env.NEXT_PUBLIC_POSTHOG_APIKEY,
         appUrl: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+        opt_in_site_apps: true,
         enableInDevelopment: process.env.USE_POSTHOG_IN_DEVELOPMENT === "true",
       },
     ],
@@ -112,14 +113,14 @@ const config = {
           hideable: true,
         },
       },
-      announcementBar: {
-        id: "announcementBar-2", // increment on change
-        // content: `🦄 We've just launched Tigris MongoDB compatibility in beta. <a href="https://www.tigrisdata.com/blog/mongodb-compatibility-beta/">Read the announcement</a> 📣 or  <a href="https://www.tigrisdata.com/docs/concepts/mongodb-compatibility/">Check out the docs</a> 📖`,
-        content: `🚀 <a target="_blank" href="${tigrisConfig.signupUrl}">Signup</a> for our new public beta &nbsp; &nbsp; ⭐️ Star Tigris on <a target="_blank" rel="noopener noreferrer" href="https://github.com/tigrisdata/tigris">GitHub</a>`,
-        backgroundColor: "#5ecbad",
-        textColor: "#262b31",
-        isCloseable: false,
-      },
+      // announcementBar: {
+      //   id: "announcementBar-2", // increment on change
+      //   // content: `🦄 We've just launched Tigris MongoDB compatibility in beta. <a href="https://www.tigrisdata.com/blog/mongodb-compatibility-beta/">Read the announcement</a> 📣 or  <a href="https://www.tigrisdata.com/docs/concepts/mongodb-compatibility/">Check out the docs</a> 📖`,
+      //   content: `🚀 <a target="_blank" href="${tigrisConfig.signupUrl}">Signup</a> for our new public beta &nbsp; &nbsp; ⭐️ Star Tigris on <a target="_blank" rel="noopener noreferrer" href="https://github.com/tigrisdata/tigris">GitHub</a>`,
+      //   backgroundColor: "#5ecbad",
+      //   textColor: "#262b31",
+      //   isCloseable: false,
+      // },
       navbar: {
         hideOnScroll: false,
         logo: {
