@@ -43,9 +43,9 @@ from tigrisdb.client import TigrisClient
 from tigrisdb.types import ClientConfig
 
 client = TigrisClient(
-            config=ClientConfig(
+            conf=ClientConfig(
               server_url=<region uri here>,
-              project_name="vectordemo",
+              project="vectordemo",
               client_id=<client id here>,
               client_secret=<client secret here>
         )).get_search()
