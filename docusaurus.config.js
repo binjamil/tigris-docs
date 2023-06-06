@@ -15,8 +15,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Tigris Documentation",
-  tagline:
-    "Tigris is a Serverless NoSQL Database and Search Platform that offers a modern alternative to DynamoDB and MongoDB.",
+  tagline: "Tigris is the storage platform for real-time apps.",
   url: "https://www.tigrisdata.com",
   baseUrl: "/docs/",
   favicon: "img/favicon.ico",
@@ -176,11 +175,6 @@ const config = {
             position: "right",
           },
           {
-            href: "https://github.com/tigrisdata/tigris",
-            className: "pseudo-icon github-icon",
-            position: "right",
-          },
-          {
             href: "https://twitter.com/TigrisData",
             className: "pseudo-icon twitter-icon",
             position: "right",
@@ -189,18 +183,18 @@ const config = {
             type: "search",
             position: "right",
           },
-          {
-            label: "Sign Up",
-            href: tigrisConfig.signupUrl,
-            position: "right",
-            className: "wc-portal-signup wc-portal-link",
-          },
-          {
-            label: "Login",
-            href: tigrisConfig.loginUrl,
-            position: "right",
-            className: "wc-portal-login wc-portal-link",
-          },
+          // {
+          //   label: "Sign Up",
+          //   href: tigrisConfig.signupUrl,
+          //   position: "right",
+          //   className: "wc-portal-signup wc-portal-link",
+          // },
+          // {
+          //   label: "Login",
+          //   href: tigrisConfig.loginUrl,
+          //   position: "right",
+          //   className: "wc-portal-login wc-portal-link",
+          // },
         ],
       },
       footer: {
@@ -212,19 +206,19 @@ const config = {
           height: "26px",
         },
         links: [
-          {
-            title: "Product",
-            items: [
-              {
-                label: "Documentation",
-                href: "/docs/",
-              },
-              {
-                label: "Cloud Console",
-                href: tigrisConfig.consoleUrl,
-              },
-            ],
-          },
+          // {
+          //   title: "Product",
+          //   items: [
+          //     {
+          //       label: "Documentation",
+          //       href: "/docs/",
+          //     },
+          //     {
+          //       label: "Cloud Console",
+          //       href: tigrisConfig.consoleUrl,
+          //     },
+          //   ],
+          // },
           {
             title: "Company",
             items: [
@@ -266,20 +260,12 @@ const config = {
                 className: "footer__link-item disable-external-icon",
               },
               {
-                label: "Community",
-                to: "/community",
-              },
-              {
-                label: "GitHub",
-                href: tigrisConfig.gitHubUrl,
-              },
-              {
-                label: "Discord",
-                href: tigrisConfig.discordUrl,
-              },
-              {
-                label: "YouTube",
+                label: "Videos",
                 href: "https://www.youtube.com/channel/UCsCQ5Nl3JOh71UNCCNZ3q2g",
+              },
+              {
+                label: "Community",
+                href: tigrisConfig.discordUrl,
               },
             ],
           },
