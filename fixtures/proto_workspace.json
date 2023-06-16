@@ -140,6 +140,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "key_type",
+              "description": "key type [credentials, api_key]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -809,6 +821,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "key_type",
+              "description": "key_type [credentials, api_key]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -1239,7 +1263,7 @@
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
-          "hasOneofs": false,
+          "hasOneofs": true,
           "extensions": [],
           "fields": [
             {
@@ -1252,6 +1276,18 @@
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "optional configuration for the Project",
+              "label": "optional",
+              "type": "ProjectOptions",
+              "longType": "ProjectOptions",
+              "fullType": "tigrisdata.v1.ProjectOptions",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_options",
               "defaultValue": ""
             }
           ]
@@ -2773,7 +2809,7 @@
           "description": "Request listing of all the app keys those are visible to requesting actor",
           "hasExtensions": false,
           "hasFields": true,
-          "hasOneofs": false,
+          "hasOneofs": true,
           "extensions": [],
           "fields": [
             {
@@ -2786,6 +2822,18 @@
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "key_type",
+              "description": "Optionally the key type one of [credentials, api_key]. Defaults to credentials",
+              "label": "optional",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_key_type",
               "defaultValue": ""
             }
           ]
@@ -3156,6 +3204,54 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "limits",
+              "description": "optional limits associated with the project",
+              "label": "",
+              "type": "ProjectLimits",
+              "longType": "ProjectLimits",
+              "fullType": "tigrisdata.v1.ProjectLimits",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ProjectLimits",
+          "longName": "ProjectLimits",
+          "fullName": "tigrisdata.v1.ProjectLimits",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "max_collections",
+              "description": "maximum number of collections in the Project",
+              "label": "optional",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_max_collections",
+              "defaultValue": ""
+            },
+            {
+              "name": "max_search_indexes",
+              "description": "maximum number of search indexes in the Project",
+              "label": "optional",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_max_search_indexes",
+              "defaultValue": ""
             }
           ]
         },
@@ -3169,6 +3265,30 @@
           "hasOneofs": false,
           "extensions": [],
           "fields": []
+        },
+        {
+          "name": "ProjectOptions",
+          "longName": "ProjectOptions",
+          "fullName": "tigrisdata.v1.ProjectOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "limits",
+              "description": "optional limits and capacity configuration",
+              "label": "optional",
+              "type": "ProjectLimits",
+              "longType": "ProjectLimits",
+              "fullType": "tigrisdata.v1.ProjectLimits",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_limits",
+              "defaultValue": ""
+            }
+          ]
         },
         {
           "name": "ReadRequest",
@@ -4406,6 +4526,78 @@
           ]
         },
         {
+          "name": "UpdateProjectRequest",
+          "longName": "UpdateProjectRequest",
+          "fullName": "tigrisdata.v1.UpdateProjectRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Update project with this name.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "project configuration to update",
+              "label": "",
+              "type": "ProjectOptions",
+              "longType": "ProjectOptions",
+              "fullType": "tigrisdata.v1.ProjectOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateProjectResponse",
+          "longName": "UpdateProjectResponse",
+          "fullName": "tigrisdata.v1.UpdateProjectResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "A detailed response message.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "status",
+              "description": "An enum with value set as \"updated\".",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdateRequest",
           "longName": "UpdateRequest",
           "fullName": "tigrisdata.v1.UpdateRequest",
@@ -5079,6 +5271,29 @@
                     {
                       "method": "DELETE",
                       "pattern": "/v1/projects/{project}/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "UpdateProject",
+              "description": "Update Project configuration and metadata",
+              "requestType": "UpdateProjectRequest",
+              "requestLongType": "UpdateProjectRequest",
+              "requestFullType": "tigrisdata.v1.UpdateProjectRequest",
+              "requestStreaming": false,
+              "responseType": "UpdateProjectResponse",
+              "responseLongType": "UpdateProjectResponse",
+              "responseFullType": "tigrisdata.v1.UpdateProjectResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/v1/projects/{project}/update",
                       "body": "*"
                     }
                   ]
@@ -7298,6 +7513,89 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "WhoAmIRequest",
+          "longName": "WhoAmIRequest",
+          "fullName": "tigrisdata.observability.v1.WhoAmIRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "WhoAmIResponse",
+          "longName": "WhoAmIResponse",
+          "fullName": "tigrisdata.observability.v1.WhoAmIResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "sub",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "namespace",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "role",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "auth_method",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -7393,6 +7691,28 @@
                     {
                       "method": "GET",
                       "pattern": "/v1/observability/info"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "WhoAmI",
+              "description": "",
+              "requestType": "WhoAmIRequest",
+              "requestLongType": "WhoAmIRequest",
+              "requestFullType": "tigrisdata.observability.v1.WhoAmIRequest",
+              "requestStreaming": false,
+              "responseType": "WhoAmIResponse",
+              "responseLongType": "WhoAmIResponse",
+              "responseFullType": "tigrisdata.observability.v1.WhoAmIResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/v1/observability/whoami"
                     }
                   ]
                 }
